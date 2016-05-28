@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="title_post_list">
+                <source>title.post_list</source>
+                <target>Liste d'articles</target>
+            </trans-unit>
+            <trans-unit id="sano_menu_solutions">
+                <source>sano.menu_solutions</source>
+                <target>Nos Solutions</target>
+            </trans-unit>
+            <trans-unit id="sano_menu_vision">
+                <source>sano.menu_vision</source>
+                <target>Notre Vision</target>
+            </trans-unit>
+            <trans-unit id="sano_menu_context">
+                <source>sano.menu_context</source>
+                <target>Le context</target>
+            </trans-unit>
+            <trans-unit id="sano_menu_partenaires">
+                <source>sano.menu_partenaires</source>
+                <target>Nos partenaires</target>
+            </trans-unit>
+            <trans-unit id="sano_menu_contact">
+                <source>sano.menu_contact</source>
+                <target>Contact</target>
+            </trans-unit>
+            <trans-unit id="sano_menu_medias">
+                <source>sano.menu_medias</source>
+                <target>Médias</target>
+            </trans-unit>
+            <trans-unit id="sano_signup">
+                <source>sano.signup</source>
+                <target>Rejoignez-nous</target>
+            </trans-unit>
+            <trans-unit id="sano_login">
+                <source>sano.login</source>
+                <target>Connexion</target>
+            </trans-unit>
+            <trans-unit id="sano_hello">
+                <source>sano.hello</source>
+                <target>Bonjour</target>
+            </trans-unit>
+            <trans-unit id="sano_name">
+                <source>sano.name</source>
+                <target>Nom</target>
+            </trans-unit>
+            <trans-unit id="sano_firtsname">
+                <source>sano.firstname</source>
+                <target>Prénom</target>
+            </trans-unit>
+            <trans-unit id="sano_email">
+                <source>sano.email</source>
+                <target>Email</target>
+            </trans-unit>
+            <trans-unit id="sano_password">
+                <source>sano.password</source>
+                <target>Mot de passe</target>
+            </trans-unit>
+            <trans-unit id="sano_confirme">
+                <source>sano.confirme</source>
+                <target>Confirmer</target>
+            </trans-unit>
+            <trans-unit id="sano_login_name">
+                <source>sano.login_name</source>
+                <target>Pseudo</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

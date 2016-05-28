@@ -1,0 +1,8 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+{% block title %}Rejoignez la communauté des Sanochos - {{ parent() }}{% endblock %}
+{% block fos_user_content %}
+<div class="container center-block">
+    <h2 class="well well-large text-center text-success">Rejoignez la communauté des <span class="text-success -italic -bold">Sanochos</span> </h2>
+{% include "FOSUserBundle:Registration:register_content.html.twig" %}
+</div>
+{% endblock fos_user_content %}

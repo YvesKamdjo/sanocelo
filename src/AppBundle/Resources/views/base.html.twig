@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=2" />
+    <!--link rel="icon" href="../../favicon.ico"-->
+
+    <title>{% block title %}Sano Celo{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    {% stylesheets filter='cssrewrite'
+                    '@font_awesome'
+                    '@twbs_bootstrap_css'
+     %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+
+    {% endstylesheets %}
+
+    {% stylesheets 'bundles/app/css/*' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    {% stylesheets 'bundles/app/css/ie/*' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}">
+    {% endstylesheets %}
+
+    {% javascripts
+    '@AppBundle/Resources/public/js/ie/html5shiv.js'
+    '@AppBundle/Resources/public/js/ie/respond.min.js'
+    %}
+    <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+    <![endif]-->
+</head>
+<!-- NAVBAR
+================================================== -->
+<body>
+
+<div id="page-wrapper">
+
+    {% for type, flashes in app.session.flashBag.all() %}
+        {% for flash in flashes %}
+            <div class="alert alert-{{ type }}">
+                {{ flash }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <!-- Header -->
+    {{ include('AppBundle::_menu.html.twig', {'page_title': block('title')}) }}
+    <!-- Banner -->
+    {% block banner %}
+    <section id="banner">
+
+        <!--h2-->
+
+            <div class="row" style="width: 30%;margin: auto;">
+                <div class="col-xs-12 col-md-3 col-lg-3"><h2>SAN</h2></div>
+                <div class="col-xs-12 col-md-3 col-lg-3">
+                {% image '@AppBundle/Resources/public/images/sanocelo_5cm.png' %}
+                <img  class="featurette-image img-responsive pull-left img-circle" src="{{ asset_url }}" alt="SANOCELO" />
+                {% endimage %}
+                </div>
+                <div class="col-xs-12 col-md-3 col-lg-3"><h2>CELO</h2></div>
+            </div>
+    </section>
+    {% endblock %}
+
+    <!-- Main -->
+    <section id="main" class="container">
+    {% block content %}
+
+    {% endblock %}
+    </section>
+
+    <!-- CTA -->
+    <section id="cta">
+
+        <h2>Stay tuned, inscrivez-vous à notre newsletter</h2>
+        <p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc.</p>
+
+        <form>
+            <div class="row uniform 50%">
+                <div class="8u 12u(mobilep)">
+                    <input type="email" name="email" id="email" placeholder="Email Address" />
+                </div>
+                <div class="4u 12u(mobilep)">
+                    <input type="submit" value="Sign Up" class="fit" />
+                </div>
+            </div>
+        </form>
+
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; All rights reserved.</li><li>Sano Celo- 2016</li>
+        </ul>
+    </footer>
+
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+{% javascripts
+    'bundles/app/js/jquery-2.0.0.min.js'
+    '@twbs_bootstrap_js'
+    '@AppBundle/Resources/public/js/jquery.dropotron.min.js'
+    '@AppBundle/Resources/public/js/jquery.scrollgress.min.js'
+    '@AppBundle/Resources/public/js/skel.min.js'
+    '@AppBundle/Resources/public/js/util.js'
+    '@AppBundle/Resources/public/js/main.js'
+%}
+<script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+</body>
+</html>
+

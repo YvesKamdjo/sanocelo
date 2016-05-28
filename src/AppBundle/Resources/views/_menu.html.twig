@@ -1,0 +1,57 @@
+<header id="header" class="alt">
+    <h1>
+        <a href="{{ path('homepage') }}" class="pull-left">
+            {% image '@AppBundle/Resources/public/images/sanocelo_5cm.png' %}
+            <img  class="featurette-image img-responsive center-block img-circle" src="{{ asset_url }}" style="width: 35%" alt="SANOCELO" />
+            {% endimage %}
+        </a>
+        <a class="pull-left" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'en'})) }}">
+            {% image '@AppBundle/Resources/public/images/flag-uk.png' %}
+            <img  class="featurette-image img-responsive center-block" src="{{ asset_url }}" style="width: 70%;margin-top: 10px;" alt="EN" />
+            {% endimage %}
+        </a>
+        <a class="pull-left" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'fr'})) }}">
+            {% image '@AppBundle/Resources/public/images/flag-france.png' %}
+            <img  class="featurette-image img-responsive center-block" src="{{ asset_url }}" style="width: 70%;margin-top: 10px;" alt="FR" />
+            {% endimage %}
+        </a>
+        <a class="pull-left" href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale': 'es'})) }}">
+            {% image '@AppBundle/Resources/public/images/flag-spain.png' %}
+            <img  class="featurette-image img-responsive center-block" src="{{ asset_url }}" style="width: 70%;margin-top: 10px;" alt="ES" />
+            {% endimage %}
+        </a>
+    </h1>
+    <nav id="nav">
+        <ul>
+            <li><a href="{{ path('homepage') }}">Home</a></li>
+            <li><a href="{{ path('sanocelo_context') }}">{{ 'sano.menu_context'|trans }}</a></li>
+            <li><a href="{{ path('sanocelo_vision') }}">{{ 'sano.menu_vision'|trans }}</a></li>
+            <li><a href="{{ path('sanocelo_solutions') }}">{{ 'sano.menu_solutions'|trans }}</a></li>
+            <li><a href="{{ path('sanocelo_partenaires') }}">{{ 'sano.menu_partenaires'|trans }}</a></li>
+            <li><a href="{{ path('sanocelo_medias') }}">{{ 'sano.menu_medias'|trans }}</a></li>
+            <li><a href="{{ path('sanocelo_contact') }}">{{ 'sano.menu_contact'|trans }}</a></li>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li>
+                <a href="#" class="icon fa-angle-down"><i class="fa fa-user"></i> {{ 'sano.hello'|trans }} {{  app.user.username }}</a>
+                <ul>
+                    <li><a href="#">Mon compte</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Elements</a></li>
+                    <li>
+                        <a href="#">Submenu</a>
+                        <ul>
+                            <li><a href="#">Option One</a></li>
+                            <li><a href="#">Option Two</a></li>
+                            <li><a href="#">Option Three</a></li>
+                            <li><a href="#">Option Four</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            {% else %}
+            <li><a href="{{ path('fos_user_registration_register') }}" class="btn btn-success">{{ 'sano.signup'|trans }}</a></li>
+            <li><a href="{{ path('fos_user_security_login') }}" class="btn btn-primary">{{ 'sano.login'|trans }}</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>

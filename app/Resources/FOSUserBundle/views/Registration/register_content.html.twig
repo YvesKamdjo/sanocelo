@@ -1,0 +1,46 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<div class="text-center w3-center w3-margin-top"><!-- col-lg-10 -->
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+{#{{ form_widget(form) }}#}
+    {{ form_errors(form) }}
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            {{ form_label(form.email,' ') }}
+            {{ form_widget(form.email,{ 'attr': {'placeholder':  'form.email' }}) }}
+
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+            {{ form_label(form.username,' ') }}
+            {{ form_widget(form.username,{ 'attr': {'placeholder':  'form.username' }}) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-6">
+           {{ form_label(form.name,' ') }}<br>
+            {{ form_widget(form.name,{ 'attr': {'placeholder':  'sano.name' }}) }}
+
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+           {{ form_label(form.firstname,' ') }}<br>
+            {{ form_widget(form.firstname, { 'attr': {'placeholder':  'sano.firstname' }}) }}
+        </div>
+    </div>
+    <div class="row">
+        {% for passwordField in form.plainPassword %}
+            <div class="col-sm-6 col-md-6 col-lg-6">
+                {{ form_label(passwordField,' ') }}
+                {% if loop.index == 1 %}
+                    {{ form_widget(passwordField,{ 'attr': {'placeholder':  'sano.password' }}) }}
+                {% else %}
+                    {{ form_widget(passwordField,{ 'attr': {'placeholder':  'sano.confirme' }}) }}
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row w3-margin-top w3-center">
+
+            <input class="btn btn-lg btn-success btn-block w3-center w3-hover-green" type="submit" value="{{ 'registration.submit'|trans }}" />
+
+    </div>
+{{ form_end(form) }}
+</div>
