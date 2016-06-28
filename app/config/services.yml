@@ -4,43 +4,43 @@ parameters:
 #    parameter_name: value
 
 services:
+#    service_name:
+#        class: AppBundle\Directory\ClassName
+#        arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
 
-    app.form.registration:
-        class: AppBundle\Form\RegistrationType
-        tags:
-            - { name: form.type, alias: app_user_registration }
-
-
-    app.mailer.notification:
-        class: AppBundle\Mailer\NotificationMailer
+services:
+    app_basiccms.basic_cms.phpcr.initializer:
+        class: Doctrine\Bundle\PHPCRBundle\Initializer\GenericInitializer
         arguments:
-            - 'Spotizer'
-            - 'spotizer@clever-age.com'
-            - '@templating'
-            - '@mailer'
-
-    admin.category:
-        class: AppBundle\Admin\CategoryAdmin
-        arguments: [~, AppBundle\Entity\Category, ~]
+            - Sanocelo Initializer
+            - ["/sanocelo/pages", "/sanocelo/posts", "/sanocelo/routes"]
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Category }
-    admin.blog_post:
-        class: AppBundle\Admin\BlogPostAdmin
-        arguments: [~, AppBundle\Entity\BlogPost, ~]
+            - { name: doctrine_phpcr.initializer }
+    app.basic_cms.admin.page:
+        class: AppBundle\Admin\PageAdmin
+        arguments:
+            - ''
+            - AppBundle\Document\Page
+            - 'SonataAdminBundle:CRUD'
         tags:
-            - { name: sonata.admin, manager_type: orm, label: Blog post }
-    # Repositories
-    app.repository.track:
-        class: AppBundle\Repository\TrackRepository
-        factory: ['@doctrine', 'getRepository']
-        arguments: ['AppBundle:Track']
-
-    app.repository.artist:
-        class: AppBundle\Repository\ArtistRepository
-        factory: ['@doctrine', 'getRepository']
-        arguments: ['AppBundle:Artist']
-
-    app.repository.playlist:
-        class: AppBundle\Repository\PlaylistRepository
-        factory: ['@doctrine', 'getRepository']
-        arguments: ['AppBundle:Playlist']
+            - { name: sonata.admin, manager_type: doctrine_phpcr, group: 'Basic CMS', label: Page }
+        calls:
+            - [setRouteBuilder, ['@sonata.admin.route.path_info_slashes']]
+    app.basic_cms.admin.post:
+        class: AppBundle\Admin\PostAdmin
+        arguments:
+            - ''
+            - AppBundle\Document\Post
+            - 'SonataAdminBundle:CRUD'
+        tags:
+            - { name: sonata.admin, manager_type: doctrine_phpcr, group: 'Basic CMS', label: 'Blog Posts' }
+        calls:
+            - [setRouteBuilder, ['@sonata.admin.route.path_info_slashes']]
+    app.basic_cms.menu_provider:
+        class: Symfony\Cmf\Bundle\MenuBundle\Provider\PhpcrMenuProvider
+        arguments:
+            - '@cmf_menu.loader.node'
+            - '@doctrine_phpcr'
+            - /cms/pages
+        tags:
+            - { name: knp_menu.provider }

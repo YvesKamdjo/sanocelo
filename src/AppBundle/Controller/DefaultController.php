@@ -2,39 +2,56 @@
 
 namespace AppBundle\Controller;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 class DefaultController extends Controller
 {
+    /**
+     * @Route("/", name="homepage")
+     */
     public function indexAction()
     {
-        return $this->render('AppBundle:Default:index.html.twig', [
-            'test' => 'je test'
-        ]);
+        return $this->render('AppBundle:default:index.html.twig');
+      /*  return $this->render('default/index.html.twig', array(
+            'base_dir' => str_replace('/', DIRECTORY_SEPARATOR, realpath($this->getParameter('kernel.root_dir').'/../').'/'),
+        ));*/
     }
 
-   public function notreVisionAction(){
-        return $this->render('AppBundle:Default:notrevision.html.twig');
-   }
-    public function solutionsAction(){
-        return $this->render('AppBundle:Default:solutions.html.twig');
+    /**
+     * @param $contentDocument
+     * @return array
+     * @Route("/page/{name}", name="cms_page"))
+     */
+    public function pageAction($name){
+        $dm = $this->get('doctrine_phpcr')->getManager();
+        $posts = $dm->getRepository('AppBundle:Post')->find('sanocelo/posts/'.$name.'/'.$name.'-first');
+        $page = $dm->getRepository('AppBundle:Page')->find('sanocelo/pages/'.$name);
+
+        return $this->render('AppBundle:default:page.html.twig',
+            array(
+            'page'  => $page,
+            'posts' => $posts,
+            'title' => $name
+        )
+        );
     }
 
-    public function contextAction(){
-        return $this->render('AppBundle:Default:context.html.twig');
-    }
+    /**
+     * @param $title
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function sonatapageAction($contentDocument){
+        $dm = $this->get('doctrine_phpcr')->getManager();
+        $posts = $dm->getRepository('AppBundle:Post')->findAll();
 
-    public function mediasAction(){
-        return $this->render('AppBundle:Default:medias.html.twig');
-    }
-
-    public function partenairesAction(){
-        return $this->render('AppBundle:Default:partenaires.html.twig');
-    }
-
-    public function contactAction(){
-        return $this->render('AppBundle:Default:contact.html.twig');
+        return $this->render('AppBundle:default:page.html.twig',
+            array(
+            'page'  => 'Test',
+            'posts' => $posts,
+            'title' => $contentDocument
+        )
+        );
     }
 }

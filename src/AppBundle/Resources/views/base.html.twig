@@ -1,134 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}?v=2" />
-    <!--link rel="icon" href="../../favicon.ico"-->
+<html>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+<meta name="description" content="">
+<meta name="author" content="">
+<!--link rel="icon" href="../../favicon.ico"-->
 
-    <title>{% block title %}Sano Celo{% endblock %}</title>
+<title>{% block title %}Dr Marie JOURDAN{% endblock %}</title>
+<!-- Bootstrap core CSS -->
+{% stylesheets filter='cssrewrite'
+    'bundles/app/css/font-awesome-4.6.3/css/font-awesome.min.css'
+    'bundles/app/css/bootstrap-3.3.6/css/bootstrap.min.css'
+    '@AppBundle/Resources/public/css/jquery-ui-1.12.0-rc.2/jquery-ui.min.css'
+    '@AppBundle/Resources/public/css/w3.css'
+    '@AppBundle/Resources/public/css/font-raleway.css'
+    '@AppBundle/Resources/public/css/ie10-viewport-bug-workaround.css'
+    '@AppBundle/Resources/public/css/main.css'
+%}
+<link rel="stylesheet" href="{{ asset_url }}">
+{% endstylesheets %}
 
-    <!-- Bootstrap core CSS -->
-    {% stylesheets filter='cssrewrite'
-                    '@font_awesome'
-                    '@twbs_bootstrap_css'
-     %}
-    <link rel="stylesheet" href="{{ asset_url }}">
+<body class="w3-light-grey">
 
-    {% endstylesheets %}
-
-    {% stylesheets 'bundles/app/css/*' filter='cssrewrite' %}
-    <link rel="stylesheet" href="{{ asset_url }}">
-    {% endstylesheets %}
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    {% stylesheets 'bundles/app/css/ie/*' filter='cssrewrite' %}
-    <link rel="stylesheet" href="{{ asset_url }}">
-    {% endstylesheets %}
-
-    {% javascripts
-    '@AppBundle/Resources/public/js/ie/html5shiv.js'
-    '@AppBundle/Resources/public/js/ie/respond.min.js'
-    %}
-    <script src="{{ asset_url }}"></script>
-    {% endjavascripts %}
-
-    <![endif]-->
-</head>
-<!-- NAVBAR
-================================================== -->
-<body>
-
-<div id="page-wrapper">
-
-    {% for type, flashes in app.session.flashBag.all() %}
-        {% for flash in flashes %}
-            <div class="alert alert-{{ type }}">
-                {{ flash }}
-            </div>
-        {% endfor %}
-    {% endfor %}
+<div class="w3-row">
+    {% block main_menu %}
+        {{ include('AppBundle::menu.html.twig') }}
+    {% endblock %}
+</div>
+<!-- w3-content defines a container for fixed size centered content,
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content w3-margin-top" style="max-width:1400px">
 
     <!-- Header -->
-    {{ include('AppBundle::_menu.html.twig', {'page_title': block('title')}) }}
-    <!-- Banner -->
-    {% block banner %}
-    <section id="banner">
+    <div class="w3-container w3-center w3-padding-32">
+        <h1><b>MY BLOG</b></h1>
+        <p>Welcome to the blog of <span class="w3-tag">unknown</span></p>
+    </div>
+{% block content %}
 
-        <!--h2-->
-
-            <div class="row" style="width: 30%;margin: auto;">
-                <div class="col-xs-12 col-md-3 col-lg-3"><h2>SAN</h2></div>
-                <div class="col-xs-12 col-md-3 col-lg-3">
-                {% image '@AppBundle/Resources/public/images/sanocelo_5cm.png' %}
-                <img  class="featurette-image img-responsive pull-left img-circle" src="{{ asset_url }}" alt="SANOCELO" />
-                {% endimage %}
-                </div>
-                <div class="col-xs-12 col-md-3 col-lg-3"><h2>CELO</h2></div>
-            </div>
-    </section>
-    {% endblock %}
-
-    <!-- Main -->
-    <section id="main" class="container">
-    {% block content %}
-
-    {% endblock %}
-    </section>
-
-    <!-- CTA -->
-    <section id="cta">
-
-        <h2>Stay tuned, inscrivez-vous à notre newsletter</h2>
-        <p>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc.</p>
-
-        <form>
-            <div class="row uniform 50%">
-                <div class="8u 12u(mobilep)">
-                    <input type="email" name="email" id="email" placeholder="Email Address" />
-                </div>
-                <div class="4u 12u(mobilep)">
-                    <input type="submit" value="Sign Up" class="fit" />
-                </div>
-            </div>
-        </form>
-
-    </section>
-
-    <!-- Footer -->
-    <footer id="footer">
-        <ul class="icons">
-            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-        </ul>
-        <ul class="copyright">
-            <li>&copy; All rights reserved.</li><li>Sano Celo- 2016</li>
-        </ul>
-    </footer>
-
+{% endblock %}
+    <!-- END w3-content -->
 </div>
 
-<!-- Bootstrap core JavaScript
-================================================== -->
+{% block footer %}
+<!-- Footer -->
+<footer class="w3-container w3-dark-grey w3-padding-32 w3-margin-top">
+    <button class="w3-btn w3-disabled w3-padding-large w3-margin-bottom">Previous</button>
+    <button class="w3-btn w3-padding-large w3-margin-bottom">Next »</button>
+    <p>Powered by <a href="http://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+</footer>
+{% endblock %}
+
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
 {% javascripts
-    'bundles/app/js/jquery-2.0.0.min.js'
-    '@twbs_bootstrap_js'
-    '@AppBundle/Resources/public/js/jquery.dropotron.min.js'
-    '@AppBundle/Resources/public/js/jquery.scrollgress.min.js'
-    '@AppBundle/Resources/public/js/skel.min.js'
-    '@AppBundle/Resources/public/js/util.js'
-    '@AppBundle/Resources/public/js/main.js'
+'@AppBundle/Resources/public/js/vendor/jquery-3.0.0.min.js'
+'@AppBundle/Resources/public/css/jquery-ui-1.12.0-rc.2/jquery-ui.min.js'
+
+
 %}
 <script src="{{ asset_url }}"></script>
-{% endjavascripts %}
 
+{% endjavascripts %}
 </body>
 </html>
-
